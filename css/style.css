@@ -1,0 +1,63 @@
+:root{
+    --green: #BFE205;
+    --darkblue: #0F4AFE;
+    --lightblue: #8AA0FE;
+    --pink: #F26BCE;
+}
+
+html{
+    font-family: arial;
+    max-width: 100%;
+    min-height: 100%;
+}
+
+a:hover, a svg:hover {
+    opacity: 50%;
+}
+
+main,
+footer {
+    animation: fadeInAnimation forwards 1s;
+}
+
+@keyframes fadeInAnimation {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+header section{
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.olhoMagico{
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+.index main img{
+    width: 20vw;
+    height: 20vw;
+}
+
+.index main a{
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 2vw 0 2vw;
+}
+
+.produto main img, .admProdutoEdit main img{
+    width: 20vw;
+    height: 20vw;
+    transition: transform .2s;
+}
+
+.produto main img:hover, .admProdutoEdit main img:hover{
+    cursor: zoom-in;
+    transform: scale(1.5);
+}

@@ -13,7 +13,7 @@ $query1= mysqli_query($dbConexao, $sql1);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="./img/" type="image/x-icon">
+    <link rel="shortcut icon" href="./img/music-svgrepo-com.svg" type="image/x-icon">
     <link rel="stylesheet" href="./css/style.css">
     <title>Gerenciar usuários</title>
 </head>
@@ -37,9 +37,6 @@ $query1= mysqli_query($dbConexao, $sql1);
 
                 <label for="txt-nome">Nome completo</label>
                 <input type="text" name="nome" id="txt-nome" minlength="5" maxlength="30" required>
-
-                <label for="txt-telefone">Telefone</label>
-                <input type="tel" name="telefone" id="txt-telefone" minlength="11" maxlength="11">
 
                 <h2>Conta</h2>
                 <label for="eml-email">E-mail</label>

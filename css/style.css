@@ -1,14 +1,87 @@
 :root{
     --green: #BFE205;
-    --darkblue: #0F4AFE;
+    --darkblue: #0f4afe;
     --lightblue: #8AA0FE;
-    --pink: #F26BCE;
+    --pink: #FF5FE4;
+    --lightgray: #F4F4F4;
 }
 
 html{
+    overflow-x: hidden;
     font-family: arial;
+    max-width: 100vw;
+    min-height: 100vh;
+    background-color: var(--lightgray);
+}
+
+header{
+    display: inline-block;
+    margin-bottom: 3%;
     max-width: 100%;
-    min-height: 100%;
+    min-width: 100%;
+}
+
+header img{
+    width: 5%;
+}
+
+header svg, header a{
+    font-size: large;
+}
+
+input, textarea{
+    border: 2px solid rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    padding: 5px;
+    font-size: medium;
+    background-color: transparent;
+    text-align: center;
+}
+
+input[type="submit"] {
+    border: none;
+    border-radius: 10px;
+    text-transform: uppercase;
+    background-color: var(--pink);
+    padding: 10px 20px;
+    color: white;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    filter: saturate(5);
+}
+
+input:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+button{
+    border: none;
+    border-radius: 10px;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    background-color: rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
+button:hover{
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+select {
+    border: 2px solid rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    padding: 5px;
+    font-size: medium;
+    background-color: transparent;
+    text-align: center;
+}
+
+a{
+    color: var(--darkblue);
+    text-decoration: none;
 }
 
 a:hover, a svg:hover {
@@ -35,29 +108,268 @@ header section{
     vertical-align: middle;
 }
 
+form svg{
+    cursor: pointer;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+td, th {
+    border-left: 30px solid transparent;
+    border-right: 30px solid transparent;
+    padding: 2% 0;
+}
+
+tr:nth-child(even) {
+    background-color: #dbdada;
+}
+
 .olhoMagico{
     opacity: 0.5;
     cursor: pointer;
 }
 
-.index main img{
-    width: 20vw;
-    height: 20vw;
+.index main{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.index main section{
+    background-color: white;
+    padding: 0.75% 0.75%;
+    height: 50vh;
+    width: 40vh;
+    margin: 5vh 2vw;
+    border-radius: 8px;
+    box-shadow: -5px 10px 10px rgba(0, 0, 0, 0.2);
+}
+
+.index main section:hover{
+    transform: scale(1.15);
+}
+
+.index main section img{
+    width: 15vw;
+    height: 35vh;
 }
 
 .index main a{
     display: inline-block;
     vertical-align: middle;
-    margin: 0 2vw 0 2vw;
+    margin: 2vh 2vw;
+    font-size: large;
+    color: black;
+}
+
+.index main a:hover{
+    opacity: 1;
+}
+
+.produto main{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: larger;
+}
+
+.produto main h1{
+    color: black;
+    text-shadow: none;
+}
+
+.produto main section:nth-child(1){
+    width: 25%;
+    margin: 1% 1% 1% -20%;
+    text-align: right;
+}
+
+.produto main section:nth-child(2){
+    width: 30%;
+    margin: 1%;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+    border-left: 2px solid rgba(0, 0, 0, 0.2);
+    border-bottom-left-radius: 8px;
+}
+
+.produto main section:nth-child(3){
+    width: 75%;
+    margin: 1%;
+}
+
+.produto main input[value="Comprar"]{
+    margin-top: 2%;
+}
+
+.produto main form div,
+.cadastro main form div,
+.conta main form div{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.produto main form div{
+    margin-bottom: 1%;
+}
+
+.produto main form div div,
+.cadastro main form div div,
+.conta main form div div{
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.produto main form div:nth-of-type(4) div:nth-child(5) input{
+    width: 2%;
+}
+
+.produto main form div:nth-of-type(4) div:nth-child(5) label{
+    width: 40%;
+}
+
+.produto main form div:nth-of-type(6) div input, .produto main form div:nth-of-type(6) div button,
+.conta main form div:nth-of-type(2) div:nth-child(1), .conta main form div:nth-of-type(2) div:nth-child(2), .conta main form div:nth-of-type(2) div:nth-child(4), .conta main form div:nth-of-type(2) div:nth-child(5), .conta main form div:nth-of-type(3) div{
+    width: 25%;
+}
+
+.produto main form div:nth-of-type(4) div:nth-child(5),
+.conta main form div:nth-of-type(4) div:nth-child(5){
+    width: 100%;
+}
+
+.produto main form div:nth-of-type(1) div, .produto main form div:nth-of-type(2) div:nth-child(3), .produto main form div:nth-of-type(2) div:nth-child(6), .produto main form div:nth-of-type(3) div:nth-child(2), .produto main form div:nth-of-type(3) div:nth-child(5), .produto main form div:nth-of-type(4) div:nth-child(1), .produto main form div:nth-of-type(4) div:nth-child(2), .produto main form div:nth-of-type(4) div:nth-child(3), .produto main form div:nth-of-type(4) div:nth-child(4),
+.cadastro main form div div,
+.conta main form div:nth-of-type(1) div, .conta main form div:nth-of-type(2) div:nth-child(3), .conta main form div:nth-of-type(2) div:nth-child(6), .conta main form div:nth-of-type(4) div{
+    width: 50%;
+}
+
+.produto main form div:nth-of-type(2) div:nth-child(1), .produto main form div:nth-of-type(2) div:nth-child(2), .produto main form div:nth-of-type(2) div:nth-child(4), .produto main form div:nth-of-type(2) div:nth-child(5), .produto main form div:nth-of-type(3) div:nth-child(1), .produto main form div:nth-of-type(3) div:nth-child(3), .produto main form div:nth-of-type(3) div:nth-child(4), .produto main form div:nth-of-type(3) div:nth-child(6), .produto main form div:nth-of-type(5) div:nth-child(1), .produto main form div:nth-of-type(5) div:nth-child(2), .produto main form div:nth-of-type(5) div:nth-child(3), .produto main form div:nth-of-type(5) div:nth-child(4), .produto main form div:nth-of-type(5) div:nth-child(5), .produto main form div:nth-of-type(5) div:nth-child(6), .produto main form div:nth-of-type(5) div:nth-child(7), .produto main form div:nth-of-type(5) div:nth-child(8){
+    width: 25%;
+}
+
+.produto main form div div input,
+.conta main form div div input{
+    width: 90%;
 }
 
 .produto main img, .admProdutoEdit main img{
-    width: 20vw;
-    height: 20vw;
+    width: auto;
+    height: 50vh;
     transition: transform .2s;
 }
 
 .produto main img:hover, .admProdutoEdit main img:hover{
     cursor: zoom-in;
     transform: scale(1.5);
+}
+
+.entrar, .cadastro{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    background-image: url(https://img.freepik.com/free-photo/closeup-man-playing-bass-guitar_169016-17470.jpg?w=900&t=st=1700230192~exp=1700230792~hmac=514d2c71116f70746dc8093ea8015f81d54a1d28f4269f9f3c3966570c167988);
+    background-size: cover;
+    background-position: center;
+}
+
+.entrar nav, .cadastro nav {
+    flex: 2;
+    text-align: center;
+    color: white;
+    font-size: 200%;
+    animation: fadeInAnimation forwards 1s;
+}
+
+.entrar nav a, .cadastro nav a{
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.entrar img, .cadastro img{
+    width: 10%;
+    margin: -5% 0;
+}
+
+.entrar main{
+    flex: 1;
+    text-align: center;
+    background-color: white;
+    margin: 0 10%;
+    padding: 5% 0;
+    border-radius: 20px;
+}
+
+.cadastro main{
+    flex: 1.4;
+    text-align: center;
+    background-color: white;
+    margin: 0 5%;
+    padding: 0 3%;
+    border-radius: 20px;
+}
+
+.cadastro main input{
+    margin-bottom: 3%;
+    border-style: none none solid none;
+}
+
+.entrar svg, .cadastro svg{
+    font-size: larger;
+}
+
+.entrar input[type="email"], .entrar input[type="text"], .entrar input[type="password"]{
+    border-style: none none solid none;
+    width: 70%;
+    margin-bottom: 5%;
+}
+
+.entrar input[type="submit"], .cadastro input[type="submit"]{
+    margin-top: 5%;
+}
+
+.cadastro main table{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cadastro main span{
+    color: red;
+}
+
+.pedido main h1, .pedido main table, .conta main h1, .conta main table, .conta main h4, .conta main input, .conta main a{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 1%;
+}
+
+.pedido main table, .conta main table, .conta main input, .conta main a{
+    font-size: large;
+}
+
+.conta main{
+    font-size: large;
+    margin: 0 10%;
+}
+
+.conta main input[type="submit"] {
+    display: block;
+    margin: auto;
+}
+
+.conta main a:last-of-type{
+    margin: 3%;
 }

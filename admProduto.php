@@ -18,7 +18,7 @@ $query2= mysqli_query($dbConexao, $sql2);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="./img/" type="image/x-icon">
+    <link rel="shortcut icon" href="./img/music-svgrepo-com.svg" type="image/x-icon">
     <link rel="stylesheet" href="./css/style.css">
     <title>Gerenciar produtos</title>
 </head>

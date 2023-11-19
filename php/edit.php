@@ -53,7 +53,6 @@ if($pagina==1){
     $id= $_POST['id'];
     $cpf= $_POST['cpf'];
     $nome= $_POST['nome'];
-    $telefone= $_POST['telefone'];
     $email= $_POST['email'];
     $senha= $_POST['senha'];
 
@@ -61,7 +60,7 @@ if($pagina==1){
     $query= mysqli_query($dbConexao, $sql);
     $senhaAtual= $query->fetch_assoc();
 
-    $sql1= "UPDATE Usuario SET usr_nome = '$nome', usr_cpf = '$cpf', usr_telefone = '$telefone', usr_email = '$email' WHERE usr_id = '$id'";
+    $sql1= "UPDATE Usuario SET usr_nome = '$nome', usr_cpf = '$cpf', usr_email = '$email' WHERE usr_id = '$id'";
 
     if(password_verify($senha, $senhaAtual['usr_senha'])){
         $update= mysqli_query($dbConexao, $sql1);
@@ -74,9 +73,6 @@ if($pagina==1){
     $id= $_SESSION['login'];
     $cpf= $_POST['cpf'];
     $nome= $_POST['nome'];
-    $telefone= $_POST['telefone'];
-    $nome2check= $_POST['nome2check'];
-    $nome2= $_POST['nome2'];
     $cep= $_POST['cep'];
     $uf= $_POST['uf'];
     $cidade= $_POST['cidade'];
@@ -85,28 +81,17 @@ if($pagina==1){
     $numero= $_POST['numero'];
     $complemento= $_POST['complemento'];
     $senha= $_POST['senha'];
-    $notificacao= $_POST['notificacao'];
-    if($notificacao==false){
-        $notificacao='0';
-    } else{
-        $notificacao='1';
-    }
     
     $sql1="SELECT usr_senha FROM Usuario WHERE usr_id = '$id';";
     $query= mysqli_query($dbConexao, $sql1);
     $senhaAtual= $query->fetch_assoc();
     
     if(password_verify($senha, $senhaAtual['usr_senha'])){
-        if($nome2check==false){
-            $sql= "UPDATE Usuario SET usr_nome = '$nome', usr_cpf = '$cpf', usr_telefone = '$telefone', usr_nome2 = null, usr_notificacao = '$notificacao',
-            usr_cep = '$cep', usr_uf = '$uf', usr_cidade = '$cidade', usr_bairro = '$bairro', usr_endereco = '$endereco', usr_numero = '$numero', usr_complemento = '$complemento' 
-            WHERE usr_id = '$id'";
-        }
-        else{
-            $sql= "UPDATE Usuario SET usr_nome = '$nome', usr_cpf = '$cpf', usr_telefone = '$telefone', usr_nome2 = '$nome2', usr_notificacao = '$notificacao',
-            usr_cep = '$cep', usr_uf = '$uf', usr_cidade = '$cidade', usr_bairro = '$bairro', usr_endereco = '$endereco', usr_numero = '$numero', usr_complemento = '$complemento' 
-            WHERE usr_id = '$id'";
-        }
+        
+        $sql= "UPDATE Usuario SET usr_nome = '$nome', usr_cpf = '$cpf',
+        usr_cep = '$cep', usr_uf = '$uf', usr_cidade = '$cidade', usr_bairro = '$bairro', usr_endereco = '$endereco', usr_numero = '$numero', usr_complemento = '$complemento' 
+        WHERE usr_id = '$id'";
+        
         $update= mysqli_query($dbConexao, $sql);
         header("Location:../conta.php");
     } else{

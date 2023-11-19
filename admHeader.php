@@ -16,7 +16,7 @@ $arrayNome= (explode(" ",$nomeHeader));
 <body class="admHeader">
     <section>
         <a href="./index.php">
-            <img src="" alt="Ícone Grandíssimo">
+            <img src="./img/music-svgrepo-com.svg" alt="Ícone Grandíssimo">
         </a>
     </section>
     <section>

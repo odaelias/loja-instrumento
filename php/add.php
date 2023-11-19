@@ -25,12 +25,11 @@ if($pagina==1){
     //CADASTRO DE ADMINISTRADORES
     $cpf= $_POST['cpf'];
     $nome= $_POST['nome'];
-    $telefone= $_POST['telefone'];
     $email= $_POST['email'];
     $senha= $_POST['senha'];
     $senhaC= password_hash($senha, PASSWORD_DEFAULT);
     
-    $sql= "INSERT INTO Usuario(usr_id, usr_cpf, usr_email, usr_senha, usr_nome, usr_telefone, usr_funcao) VALUES (null, '$cpf', '$email', '$senhaC', '$nome', '$telefone', 1)";
+    $sql= "INSERT INTO Usuario(usr_id, usr_cpf, usr_email, usr_senha, usr_nome, usr_funcao) VALUES (null, '$cpf', '$email', '$senhaC', '$nome', 1)";
     
     $selectEmail= "SELECT COUNT(usr_email) AS cntEmail FROM Usuario WHERE usr_email = '$email'";
     $queryEmail= mysqli_query($dbConexao, $selectEmail);
@@ -51,15 +50,6 @@ if($pagina==1){
     //INFORMAÇÕES PESSOAIS
     $cpf= $_POST['cpf'];
     $nome= $_POST['nome'];
-    $telefone= $_POST['telefone'];
-    $nome2check= $_POST['nome2check'];
-    $nome2= $_POST['nome2'];
-    $notificacao= $_POST['notificacao'];
-    if($notificacao==false){
-        $notificacao='0';
-    } else{
-        $notificacao='1';
-    }
     //ENTREGA
     $cep= $_POST['cep'];
     $uf= $_POST['uf'];
@@ -76,16 +66,10 @@ if($pagina==1){
     $random= rand(3, 24);
     $dataentrega= date('Y-m-d', strtotime($Date. ' + '.$random.' days'));
 
-    if($nome2check==false){
-        $sql= "UPDATE Usuario SET usr_nome = '$nome', usr_cpf = '$cpf', usr_telefone = '$telefone', usr_nome2 = null, usr_notificacao = '$notificacao',
-        usr_cep = '$cep', usr_uf = '$uf', usr_cidade = '$cidade', usr_bairro = '$bairro', usr_endereco = '$endereco', usr_numero = '$numero', usr_complemento = '$complemento' 
-        WHERE usr_id = '$id'";
-    }
-    else{
-        $sql= "UPDATE Usuario SET usr_nome = '$nome', usr_cpf = '$cpf', usr_telefone = '$telefone', usr_nome2 = '$nome2', usr_notificacao = '$notificacao',
-        usr_cep = '$cep', usr_uf = '$uf', usr_cidade = '$cidade', usr_bairro = '$bairro', usr_endereco = '$endereco', usr_numero = '$numero', usr_complemento = '$complemento' 
-        WHERE usr_id = '$id'";
-    }
+    $sql= "UPDATE Usuario SET usr_nome = '$nome', usr_cpf = '$cpf',
+    usr_cep = '$cep', usr_uf = '$uf', usr_cidade = '$cidade', usr_bairro = '$bairro', usr_endereco = '$endereco', usr_numero = '$numero', usr_complemento = '$complemento' 
+    WHERE usr_id = '$id'";
+
     $update= mysqli_query($dbConexao, $sql);
 
     if($vizinhocheck==false){
@@ -111,9 +95,6 @@ if($pagina==1){
     //PÁGINA 5
     $cpf= $_POST['cpf'];
     $nome= $_POST['nome'];
-    $nome2= $_POST['nome2'];
-    $telefone= $_POST['telefone'];
-    $notificacao= $_POST['notificacao'];
     $cep= $_POST['cep'];
     $cidade= $_POST['cidade'];
     $uf= $_POST['uf'];
@@ -125,7 +106,7 @@ if($pagina==1){
     $senha= $_POST['senha'];
     $senhaC= password_hash($senha, PASSWORD_DEFAULT);
 
-    $sql= "INSERT INTO Usuario(usr_id, usr_cpf, usr_email, usr_senha, usr_nome, usr_nome2, usr_telefone, usr_notificacao, usr_cep, usr_cidade, usr_uf, usr_bairro, usr_endereco, usr_numero, usr_complemento, usr_funcao) VALUES (null, '$cpf', '$email', '$senhaC', '$nome', '$nome2', '$telefone', '$notificacao', '$cep', '$cidade', '$uf', '$bairro', '$endereco', '$numero', '$complemento', 2)";
+    $sql= "INSERT INTO Usuario(usr_id, usr_cpf, usr_email, usr_senha, usr_nome, usr_cep, usr_cidade, usr_uf, usr_bairro, usr_endereco, usr_numero, usr_complemento, usr_funcao) VALUES (null, '$cpf', '$email', '$senhaC', '$nome', '$cep', '$cidade', '$uf', '$bairro', '$endereco', '$numero', '$complemento', 2)";
 
     $selectEmail= "SELECT COUNT(usr_email) AS cntEmail FROM Usuario WHERE usr_email = '$email'";
     $queryEmail= mysqli_query($dbConexao, $selectEmail);

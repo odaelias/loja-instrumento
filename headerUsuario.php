@@ -13,10 +13,10 @@ $arrayNome= (explode(" ",$nomeHeader));
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-<body class="headerUsuario">
+<body>
     <section>
         <a href="./index.php">
-            <img src="" alt="Ícone Grandíssimo">
+            <img src="./img/music-svgrepo-com.svg" alt="Ícone Grandíssimo">
         </a>
     </section>
     <section>

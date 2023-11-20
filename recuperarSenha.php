@@ -22,27 +22,33 @@ $qtdEmail= mysqli_fetch_assoc($queryEmail);
     <link rel="stylesheet" href="./css/style.css">
     <title>Recuperação de senha | Grandíssimo</title>
 </head>
-<body>
-    <nav>
-        <a href="./entrar.html">Voltar</a>
-    </nav>
+<body class="recuperarsenha">
     <main>
-        <h1>Recuperação de senha</h1>
+        <h2>Recuperação de senha</h2>
         <span>Enviaremos uma nova senha ao e-mail indicado abaixo</span>
         <form action="" method="post">
-            <label for="eml-email">E-mail</label>
-            <input type="email" name="email" id="eml-email" required>
-            <input type="submit" value="Enviar nova senha">
+            <section>
+                <label for="eml-email">E-mail</label>
+                <input type="email" name="email" id="eml-email" required>
+            </section>
+            <section>
+                <input type="submit" value="Enviar nova senha">
+            </section>
         </form>
-        <?php
-            if(isset($_POST['email'])){
-                if($qtdEmail["cntEmail"]>=1){
-                    echo "Sua nova senha é: ".$random;
-                } else{
-                    echo "E-mail não cadastrado";
-                }  
-            }
-        ?>
+        <section>
+            <?php
+                if(isset($_POST['email'])){
+                    if($qtdEmail["cntEmail"]>=1){
+                        echo "Sua nova senha é: ".$random;
+                    } else{
+                        echo "E-mail não cadastrado!";
+                    }  
+                }
+            ?>
+        </section>
+        <section>
+            <a href="./entrar.html">Voltar</a>
+        </section>
     </main>
 </body>
 </html>

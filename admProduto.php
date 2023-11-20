@@ -1,6 +1,19 @@
 <?php session_start();
 require_once("db/conexao.php");
 
+if(isset($_SESSION['login'])){
+    $idRestrito= $_SESSION['login'];
+    $sqlRestrito="SELECT usr_funcao FROM Usuario WHERE usr_id = '$idRestrito';";
+    $queryRestrito= mysqli_query($dbConexao, $sqlRestrito);
+    $restrito= mysqli_fetch_array($queryRestrito);
+    $usrFuncao = $restrito['usr_funcao'];
+    if($usrFuncao <> 1){
+        header("Location: ./index.php");
+    }
+} else{
+    header("Location: ./index.php");
+}
+
 //TODOS PRODUTOS ATIVOS
 $sql="SELECT *, Categoria.ctg_nome FROM Produto INNER JOIN Categoria ON Produto.prd_categoria = Categoria.ctg_id WHERE Produto.prd_status=1 ORDER BY Categoria.ctg_nome, Produto.prd_nome";
 $query= mysqli_query($dbConexao, $sql);
@@ -22,7 +35,7 @@ $query2= mysqli_query($dbConexao, $sql2);
     <link rel="stylesheet" href="./css/style.css">
     <title>Gerenciar produtos</title>
 </head>
-<body>
+<body class="admproduto">
     <header>
         <?php
             include('./admHeader.php');
@@ -30,33 +43,50 @@ $query2= mysqli_query($dbConexao, $sql2);
     </header>
     <main>
         <h1>Gerenciar produtos</h1>
+        <hr>
         <details>
-            <summary>+ Novo produto</summary>
+            <summary>Novo produto</summary>
             <form action="./php/add.php" method="post">
                 <input type="hidden" name="pagina" value="2">
 
-                <label for="txt-nome">Nome</label>
-                <input type="text" name="nome" id="txt-nome" maxlength="30" required>
+                <section>
+                    <section><label for="txt-nome">Nome</label></section>
+                    <section><input type="text" name="nome" id="txt-nome" maxlength="30" required></section>                    
+                </section>
+                
+                <section>
+                    <section><label for="txt-imagem">URL da imagem</label></section>
+                    <section><input type="text" name="imagem" id="txt-imagem" required></section>
+                </section>
+                
+                <section>
+                    <section>
+                        <label for="txt-descricao">Descrição</label>
+                    </section>
+                    <section>
+                        <textarea name="descricao" id="txt-descricao" maxlength="100"></textarea>
+                    </section>
+                </section>
 
-                <label for="txt-imagem">URL da imagem</label>
-                <input type="text" name="imagem" id="txt-imagem" required>
-
-                <label for="txt-descricao">Descrição</label>
-                <textarea name="descricao" id="txt-descricao" maxlength="100"></textarea>
-
-                <label for="nmb-preco">Preço</label>
-                <input type="number" name="preco" id="nmb-preco" step=".01" required>
-
-                <label for="nmb-qnt">Quantidade no estoque</label>
-                <input type="number" name="qnt" id="nmb-qnt" required>
-
-                <label for="slc-categoria">Categoria</label>
-                <select name="categoria" id="slc-categoria">
-                    <?php foreach ($query2 as $categoria){ ?>
-                    <option value="<?=$categoria['ctg_id']?>"><?=$categoria['ctg_nome']?></option>
-                    <?php } ?>
-                </select>
-
+                <section>
+                    <section><label for="nmb-preco">Preço</label></section>
+                    <section><input type="number" name="preco" id="nmb-preco" step=".01" required></section>
+                </section>
+                
+                <section>
+                    <section><label for="nmb-qnt">Quantidade no estoque</label></section>
+                    <section><input type="number" name="qnt" id="nmb-qnt" required></section>                    
+                </section>
+                
+                <section>
+                    <label for="slc-categoria">Categoria</label>
+                    <select name="categoria" id="slc-categoria">
+                        <?php foreach ($query2 as $categoria){ ?>
+                        <option value="<?=$categoria['ctg_id']?>"><?=$categoria['ctg_nome']?></option>
+                        <?php } ?>
+                    </select>
+                </section>
+                
                 <input type="submit" value="Adicionar">
             </form>
         </details>

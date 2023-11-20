@@ -1,6 +1,19 @@
 <?php session_start();
 require_once("db/conexao.php");
 
+if(isset($_SESSION['login'])){
+    $idRestrito= $_SESSION['login'];
+    $sqlRestrito="SELECT usr_funcao FROM Usuario WHERE usr_id = '$idRestrito';";
+    $queryRestrito= mysqli_query($dbConexao, $sqlRestrito);
+    $restrito= mysqli_fetch_array($queryRestrito);
+    $usrFuncao = $restrito['usr_funcao'];
+    if($usrFuncao <> 1){
+        header("Location: ./index.php");
+    }
+} else{
+    header("Location: ./index.php");
+}
+
 $hoje= date('Y-m-d');
 
 $sql= "SELECT Usuario.usr_email, Compra.*, Produto.prd_nome FROM Usuario INNER JOIN Compra ON Usuario.usr_id = Compra.cmp_usuario INNER JOIN Produto ON Compra.cmp_produto = Produto.prd_id WHERE Compra.cmp_dataentrega >= '$hoje' ORDER BY Compra.cmp_dataentrega";
@@ -18,7 +31,7 @@ $query1= mysqli_query($dbConexao, $sql1);
     <link rel="stylesheet" href="./css/style.css">
     <title>Gerenciar entregas</title>
 </head>
-<body>
+<body class="admentrega">
     <header>
         <?php
             include('./admHeader.php');
@@ -26,6 +39,7 @@ $query1= mysqli_query($dbConexao, $sql1);
     </header>
     <main>
         <h1>Gerenciar entregas</h1>
+        <hr>
         <?php
             $qtdQuery = $query->num_rows;
             if($qtdQuery>0){

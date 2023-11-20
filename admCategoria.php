@@ -1,6 +1,19 @@
 <?php session_start();
 require_once("db/conexao.php");
 
+if(isset($_SESSION['login'])){
+    $idRestrito= $_SESSION['login'];
+    $sqlRestrito="SELECT usr_funcao FROM Usuario WHERE usr_id = '$idRestrito';";
+    $queryRestrito= mysqli_query($dbConexao, $sqlRestrito);
+    $restrito= mysqli_fetch_array($queryRestrito);
+    $usrFuncao = $restrito['usr_funcao'];
+    if($usrFuncao <> 1){
+        header("Location: ./index.php");
+    }
+} else{
+    header("Location: ./index.php");
+}
+
 //CATEGORIAS ATIVAS
 $sql="SELECT * FROM Categoria WHERE ctg_status=1 ORDER BY ctg_nome";
 $query= mysqli_query($dbConexao, $sql);
@@ -17,7 +30,7 @@ $query1= mysqli_query($dbConexao, $sql1);
     <link rel="stylesheet" href="./css/style.css">
     <title>Gerenciar categorias</title>
 </head>
-<body>
+<body class="admcategoria">
     <header>
         <?php
             include('./admHeader.php');
@@ -25,9 +38,10 @@ $query1= mysqli_query($dbConexao, $sql1);
     </header>
     <main>
         <h1>Gerenciar categorias</h1>
+        <hr>
         <form action="./php/add.php" method="post">
             <input type="hidden" name="pagina" value="1">
-            <label for="txt-nome">+ Nova categoria</label>
+            <label for="txt-nome">Nova categoria:</label>
             <input type="text" name="nome" id="txt-nome" minlength="1" maxlength="20" required>
             <input type="submit" value="Adicionar">
         </form>

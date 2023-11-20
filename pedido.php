@@ -1,6 +1,10 @@
 <?php session_start();
 require_once("db/conexao.php");
 
+if(!isset($_SESSION['login'])){
+    header("Location: ./index.php");
+}
+
 $id= $_SESSION['login'];
 
 $hoje= date('Y-m-d');

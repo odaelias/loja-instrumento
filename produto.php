@@ -1,4 +1,4 @@
-<?php
+<?php session_start();
 require_once("db/conexao.php");
 
 $idProduto= $_GET['itm'];
@@ -17,12 +17,21 @@ $produto= mysqli_fetch_array($queryProduto);
 <body class="produto">
     <header>
         <?php
-            include('./header.php');
             if(isset($_SESSION['login'])){
+                include('./headerUsuario.php');
+
                 $id= $_SESSION['login'];
-                $sql= "SELECT usr_funcao FROM Usuario WHERE usr_id = '$id'";
+                $sql="SELECT * FROM Usuario WHERE usr_id = '$id';";
                 $query= mysqli_query($dbConexao, $sql);
-                $adm= mysqli_fetch_array($query);
+                $usuario= mysqli_fetch_array($query);
+            } else{
+                echo "
+                <section>
+                    <a href='./index.php'>
+                        <img src='./img/music-svgrepo-com.svg' alt='Ícone Grandíssimo'>
+                    </a>
+                </section>
+                ";
             }
         ?>
     </header>
@@ -36,11 +45,7 @@ $produto= mysqli_fetch_array($queryProduto);
         </section>
         <section>
             <?php
-                if(isset($_POST['comprar']) && isset($_SESSION['login']) && ($adm['usr_funcao']==2)){
-                    $id= $_SESSION['login'];
-                    $sql="SELECT * FROM Usuario WHERE usr_id = '$id';";
-                    $query= mysqli_query($dbConexao, $sql);
-                    $usuario= mysqli_fetch_array($query);
+                if(isset($_POST['comprar']) && isset($_SESSION['login']) && ($usuario['usr_funcao']==2)){
             ?>
             <h2>Confirmar dados para compra</h2>
             <hr>
